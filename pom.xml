@@ -9,10 +9,11 @@
 	<description>Example of building REST web services with spring, jersey and mybatis on a tomcat server</description>
 
 	<properties>
-		<spring.version>3.2.6.RELEASE</spring.version>
+		<spring.version>4.1.2.RELEASE</spring.version>
 		<jetty.version>9.0.7.v20131107</jetty.version> <!-- Adapt this to a version found on http://repo.maven.apache.org/maven2/org/eclipse/jetty/jetty-maven-plugin/ -->
 		<logback.version>1.1.1</logback.version>
- 		<jcloverslf4j.version>1.7.6</jcloverslf4j.version>		
+ 		<jcloverslf4j.version>1.7.6</jcloverslf4j.version>
+ 		<org.glassfish.jersey.core-version>2.17</org.glassfish.jersey.core-version>
 	</properties>
 
 	<repositories>
@@ -28,7 +29,7 @@
 		<dependency>
 			<groupId>org.glassfish.jersey.ext</groupId>
 			<artifactId>jersey-spring3</artifactId>
-			<version>2.4.1</version>
+			<version>${org.glassfish.jersey.core-version}</version>
 			<exclusions>
 				<exclusion>
 					<groupId>org.springframework</groupId>
@@ -44,11 +45,37 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+		
+		<dependency>
+			<groupId>org.glassfish.jersey.containers</groupId>
+			<artifactId>jersey-container-jdk-http</artifactId>
+			<version>${org.glassfish.jersey.core-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.glassfish.jersey.core</groupId>
+			<artifactId>jersey-client</artifactId>
+			<version>${org.glassfish.jersey.core-version}</version>
+		</dependency>
 		<dependency>
 			<groupId>org.glassfish.jersey.media</groupId>
 			<artifactId>jersey-media-json-jackson</artifactId>
-			<version>2.4.1</version>
+			<version>${org.glassfish.jersey.core-version}</version>
 		</dependency>
+
+		<!-- Jersey with Spring -->
+		<dependency>
+			<groupId>org.glassfish.jersey.containers</groupId>
+			<artifactId>jersey-container-servlet-core</artifactId>
+			<version>${org.glassfish.jersey.core-version}</version>
+			<!-- use the following artifactId if you don't need servlet 2.x compatibility -->
+			<!-- artifactId>jersey-container-servlet</artifactId -->
+		</dependency>
+
+		<dependency>
+	<groupId>com.google.guava</groupId>
+	<artifactId>guava</artifactId>
+	<version>18.0</version>
+</dependency>		
 
 		<!-- Spring 3 dependencies -->
 		<dependency>
@@ -115,12 +142,7 @@
 			<scope>provided</scope>
 		</dependency>
 
-		<!-- testing -->
-		<dependency>
-			<groupId>org.glassfish.jersey.core</groupId>
-			<artifactId>jersey-client</artifactId>
-			<version>2.4.1</version>			
-		</dependency>				
+		<!-- testing -->			
 		<dependency>
 			<groupId>commons-dbcp</groupId>
 			<artifactId>commons-dbcp</artifactId>

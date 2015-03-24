@@ -20,7 +20,7 @@ public class MyDemoApplication extends ResourceConfig {
 	public MyDemoApplication(){
 		register(RequestContextFilter.class);
 		register(PodcastRestService.class);
-		register(JacksonFeature.class);		
+		//register(JacksonFeature.class);		//with recent updates on jersey, there is no need for Jackson Feature
 		register(LoggingResponseFilter.class);
 		register(CORSResponseFilter.class);
 	}

@@ -6,9 +6,11 @@ import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerResponseContext;
 import javax.ws.rs.container.ContainerResponseFilter;
 
-import org.codehaus.jackson.map.ObjectMapper;
+//import org.codehaus.jackson.map.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class LoggingResponseFilter
 		implements ContainerResponseFilter {
@@ -22,9 +24,9 @@ public class LoggingResponseFilter
 		logger.debug("Requesting " + method + " for path " + requestContext.getUriInfo().getPath());
 		Object entity = responseContext.getEntity();
 		if (entity != null) {
-			logger.debug("Response " + new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(entity));
+			logger.debug("Response " + new ObjectMapper().writer().withDefaultPrettyPrinter().writeValueAsString(entity));
 		}
-
+		
 	}
 
 

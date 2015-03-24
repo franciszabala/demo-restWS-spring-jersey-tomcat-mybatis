@@ -12,6 +12,6 @@ public class PodcastRestServiceTestWithRestAssured {
 			body("id", equalTo("2")).
 			body("title", equalTo("- The Naked Scientists Podcast - Stripping Down Science")).
 		when().
-			get("/demo-rest-spring-jersey-tomcat-mybatis-0.0.1-SNAPSHOT/podcasts/2");
+			get("/demo-rest-spring-jersey-tomcat-mybatis/podcasts/2");
 	}
 }
